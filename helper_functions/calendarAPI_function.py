@@ -33,9 +33,6 @@ def callCalendarAPI(startDate, endDate):
         reportMinute = int(reportTime[1])
 
         reportDatetimeObject = datetime(reportYear, reportMonth, reportDay, reportHour, reportMinute, tzinfo=utc)
-        
-        if result['event'] == "ADP Employment Change (Dec)":
-            x = 5
 
         if reportDatetimeObject.hour != 13 or reportDatetimeObject.minute != 30:
             continue
