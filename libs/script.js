@@ -3,6 +3,7 @@ var monday = getMonday(today)
 var friday = new Date();
 friday.setDate(monday.getDate() + 4)
 document.getElementById("forTheWeekHeader").innerHTML += dateToYMD(monday) + " to " + dateToYMD(friday);
+document.getElementById("calendarTable").innerHTML += "<tr><td>test</td></tr>"
 
 function getMonday(d) {
     d = new Date(d);
