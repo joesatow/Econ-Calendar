@@ -6,3 +6,19 @@ body {
 .text-center {
     text-align: center;
 }
+
+table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    text-align: center;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+
+       

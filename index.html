@@ -2,15 +2,24 @@
 <html>
 <head>
     <link rel="stylesheet" href="styles.css">
+    <script data-main = "libs/script" src = "libs/require.js"></script>
 </head>
 <body>
 
     
     <div class="text-center">
         <h1>Econ Calendar</h1>
+        <h2 id="forTheWeekHeader">For the week: </h2>
         <button type="button" onclick="callAPI()" id="mainButton">Show reports</button>
     </div>
 
-    <script src="script.js"></script>
+    <table>
+        <tr>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+        </tr>
+    </table>
 </body>
 </html>
