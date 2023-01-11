@@ -21,4 +21,22 @@ table, td, th {
     border: 1px solid black;
 }
 
+.column {
+    float: left;
+    text-align: center;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#tuesdayColumn, #wednesdayColumn, #thursdayColumn, #fridayColumn {
+    width: 25%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid black;
+}
+
        

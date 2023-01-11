@@ -1,9 +1,12 @@
 var today = new Date();
 var monday = getMonday(today)
 var friday = new Date();
+var dayAfterFriday = new Date();
 friday.setDate(monday.getDate() + 4)
+dayAfterFriday.setDate(friday.getDate() + 1)
 document.getElementById("forTheWeekHeader").innerHTML += dateToYMD(monday) + " to " + dateToYMD(friday);
-document.getElementById("calendarTable").innerHTML += "<tr><td>test</td></tr>"
+// document.getElementById("calendarTable").innerHTML += "<tr><td>test</td></tr>"
+
 
 function getMonday(d) {
     d = new Date(d);
@@ -19,7 +22,6 @@ function dateToYMD(date) {
     return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 }
 
-
 function callAPI () {
     var requestOptions = {
         method: 'GET',
@@ -34,11 +36,8 @@ function callAPI () {
     
     tomorrowToString = dateToYMD(tomorrow)
     dayAfterTomorrowToString = dateToYMD(dayAfterTomorrow)
-    console.log(tomorrowToString)
-    console.log(dayAfterTomorrowToString)
-    console.log(`https://financialmodelingprep.com/api/v3/economic_calendar?from=${tomorrowToString}&to=${dayAfterTomorrowToString}&apikey=0fc22e02ecc68a84494f68c046d17097`)
-
-    fetch(`https://financialmodelingprep.com/api/v3/economic_calendar?from=${tomorrowToString}&to=${dayAfterTomorrowToString}&apikey=0fc22e02ecc68a84494f68c046d17097`, requestOptions)
+    console.log(`https://financialmodelingprep.com/api/v3/economic_calendar?from=${dateToYMD(monday)}&to=${dateToYMD(dayAfterFriday)}&apikey=0fc22e02ecc68a84494f68c046d17097`)
+    fetch(`https://financialmodelingprep.com/api/v3/economic_calendar?from=${dateToYMD(monday)}&to=${dateToYMD(dayAfterFriday)}&apikey=0fc22e02ecc68a84494f68c046d17097`, requestOptions)
     .then(response => response.text())
     .then(result => readResult(result))
     .catch(error => console.log('error', error));
@@ -56,10 +55,22 @@ function readResult(response) {
         }
         
         var date = new Date(item['date'])
-        var tues = []
         
-        if (date.getHours() != 13 || date.getMinutes() != 30){
-            return;
+        // if (date.getHours() != 13 || date.getMinutes() != 30){
+        //     return;
+        // }
+        
+        if (date.getDay() == 2){
+            document.getElementById("tuesdayColumn").innerHTML += `<p>${item['event']}</p>`
+        }
+        if (date.getDay() == 3){
+            document.getElementById("wednesdayColumn").innerHTML += `<p>${item['event']}</p>`
+        }
+        if (date.getDay() == 4){
+            document.getElementById("thursdayColumn").innerHTML += `<p>${item['event']}</p>`
+        }
+        if (date.getDay() == 5){
+            document.getElementById("fridayColumn").innerHTML += `<p>${item['event']}</p>`
         }
 
         console.log(item)
