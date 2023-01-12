@@ -1,12 +1,18 @@
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString)
+mktEvent = urlParams.get("event")
+mktEventToString = mktEvent.replace(/_/g, " ")
+console.log(mktEvent)
+
 var today = new Date();
 var monday = getMonday(today)
 var friday = new Date();
 var dayAfterFriday = new Date();
 friday.setDate(monday.getDate() + 4)
 dayAfterFriday.setDate(friday.getDate() + 1)
-document.getElementById("forTheWeekHeader").innerHTML += dateToYMD(monday) + " to " + dateToYMD(friday);
-// document.getElementById("calendarTable").innerHTML += "<tr><td>test</td></tr>"
-
+window.onload = function() {
+    document.getElementById("pageHeader").innerHTML = mktEventToString
+}
 
 function getMonday(d) {
     d = new Date(d);
@@ -25,7 +31,7 @@ function dateToYMD(date) {
 var requestOptions = {
     method: 'GET',
     redirect: 'follow'
-    };
+};
     
 var tomorrow = new Date(today)
 var dayAfterTomorrow = new Date(tomorrow)
@@ -57,20 +63,6 @@ function readResult(response) {
         // if (date.getHours() != 13 || date.getMinutes() != 30){
         //     return;
         // }
-        
-        if (date.getDay() == 2){
-            columnID = "tuesdayColumn"
-        }
-        if (date.getDay() == 3){
-            columnID = "wednesdayColumn"
-        }
-        if (date.getDay() == 4){
-            columnID = "thursdayColumn"
-        }
-        if (date.getDay() == 5){
-            columnID = "fridayColumn"
-        }
-        eventString = item['event'].replace(/ /g,"_")
-        document.getElementById(columnID).innerHTML += `<p><a href = eventPage.html?event=${eventString}>${item['event']}</a></p>`
+       
     })
 }
