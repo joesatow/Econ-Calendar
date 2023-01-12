@@ -5,12 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Main",
-            "type": "python",
+            "type": "node",
             "request": "launch",
-            "program": "main.py",
-            "console": "integratedTerminal",
-            "justMyCode": true
+            "name": "Launch Program",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\libs\\eventPage.js"
         }
     ]
 }
